@@ -1,0 +1,28 @@
+name: Extract PicAnon ZIP
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract project files
+        run: |
+          unzip -o picanon-render-structured.zip -d .
+          rm -f picanon-render-structured.zip
+
+      - name: Save corrected structure
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Restore PicAnon project folder structure" || echo "No changes"
+          git push
+          
