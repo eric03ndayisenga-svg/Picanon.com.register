@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    border-color: rgba(220, 38, 38, 0.16);
+  }
+  body {
+    font-family: 'Rubik', 'Montserrat', system-ui, sans-serif;
+    background-color: #ffffff;
+    color: #7f1d1d;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Montserrat', 'Rubik', system-ui, sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+}
+
+.font-display {
+  font-family: 'Montserrat', 'Rubik', system-ui, sans-serif;
+}
+
+/* Custom scrollbar hiding */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Continuous seamless repeating ticker line (marquee) */
+@keyframes picanon-marquee {
+  0% {
+    transform: translate3d(0%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-picanon-marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: picanon-marquee 28s linear infinite;
+}
+
+.animate-picanon-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-picanon-notice {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: picanon-marquee 24s linear infinite;
+}
+
+.animate-picanon-notice:hover {
+  animation-play-state: paused;
+}
+
+.animate-picanon-gallery {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: picanon-marquee 34s linear infinite;
+}
+
+.animate-picanon-gallery:hover {
+  animation-play-state: paused;
+}

@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: picanon
+    runtime: node
+    plan: free
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: NODE_ENV=production npx tsx server.ts
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 22.14.0
+      - key: PICANON_SESSION_SECRET
+        generateValue: true
