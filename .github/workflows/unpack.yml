@@ -1,0 +1,36 @@
+name: Extract PicAnon ZIP
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract project files
+        run: |
+          if [ ! -f "picanon-render-structured.zip" ]; then
+            echo "ERROR: picanon-render-structured.zip was not found in the repository root."
+            exit 1
+          fi
+          unzip -o "picanon-render-structured.zip" -d .
+          rm "picanon-render-structured.zip"
+
+      - name: Commit extracted files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Extract PicAnon project folders"
+            git push
+          fi
+          
