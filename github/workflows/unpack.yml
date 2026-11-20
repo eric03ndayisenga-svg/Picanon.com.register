@@ -1,6 +1,6 @@
 name: Extract PicAnon ZIP
 
-on:
+"on":
   workflow_dispatch:
 
 permissions:
